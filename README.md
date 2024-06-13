@@ -1,15 +1,15 @@
 # Hotel_Management_Full_Stack
 
 ##Technologys used
-1 React js
-2 Javascript
-3 express js
-4 Mongo db, Mongoose
-5 Cloudinary
-6 JWT Toknization
-7 cookies and cookie parser
-8 Node js
-9 MVC Arcitectute
+1 React js <br>
+2 Javascript<br>
+3 express js <br>
+4 Mongo db, Mongoose <br>
+5 Cloudinary <br>
+6 JWT Toknization<br>
+7 cookies and cookie parser<br>
+8 Node js<br>
+9 MVC Arcitectute<br>
 
 #For Run program steps
 1 install node modules
