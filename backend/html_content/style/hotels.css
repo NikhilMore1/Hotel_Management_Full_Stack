@@ -1,0 +1,146 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: rgb(202, 213, 202);
+}
+.nav1{
+    height: 60px;
+    margin-top: 10px;
+    
+background-image: -webkit-linear-gradient(rgb(169, 122, 122),rgb(192, 230, 192),rgba(0, 255, 255, 0.412));
+}
+.ul{
+   justify-self: center;
+   display: flex;
+   list-style-type:none;
+   justify-content: space-around;
+
+   
+}
+.logo>img{
+    width:60px;
+    height:60px ;
+}
+.items{
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-style: italic;
+    text-decoration: none;
+    margin-top: 10px;
+    
+    transition: 1s;
+    text-transform: capitalize;
+   
+}
+.head{
+    text-transform: uppercase;
+}
+.desc{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    text-shadow: 1px 1px;
+    color: black;
+}
+.items:hover{
+    background-color: aqua;
+    transform: rotateX(360deg);
+}
+#ki{
+    display: flex;
+    flex-wrap: wrap;
+    padding:10px;
+    justify-content: space-evenly;
+    width: 100%;
+    margin-bottom: 20px; /* Adjust as needed */
+
+}
+.con{
+    width: calc(44.44% - 40px); /* Three columns with 20px margin */
+    margin-bottom: 20px;
+    padding: 10px;
+    height: 35rem;
+    text-align: center;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+@media screen and (max-width: 768px) {
+    .con {
+        width: calc(50% - 20px); /* Two columns on smaller screens */
+    }
+}
+.heading{
+    height: 45rem;
+    width: 100%;
+    background-image: linear-gradient(rgba(0, 255, 255, 0.303),wheat,white);
+    background-image: url('../images/rambagh-palace-exterior.jpg');
+    background-position-x: center;
+    background-size: 100rem;
+    background-repeat: no-repeat;
+}
+.h1{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 7rem;
+    font-weight:bolder;
+    text-transform: uppercase;
+    font-style: italic;
+    color: rgb(179, 238, 245);
+    text-align: center;
+}
+
+
+
+
+
+
+
+/* Hide all slides by default */
+.slide {
+    display: none;
+  }
+  
+  /* Fade animation for slides */
+  .fade {
+    animation: fade 1.5s ease-out;
+  }
+  
+  @keyframes fade {
+    from {
+      opacity: 0.4;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  /* Navigation arrows */
+  .prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+  }
+  
+  .prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  
+  /* Position arrows */
+  .prev {
+    left: 0;
+  }
+  
+  .next {
+    right: 0;
+  }
+  

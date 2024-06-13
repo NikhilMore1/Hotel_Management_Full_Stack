@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Booking System</title>
+    <link rel="stylesheet" href="style/hotels.css">
+</head>
+<body>
+    <section class="intro">
+        <div class="heading">
+            <h1 class="h1">Hotel Booking System</h1>
+        </div>
+    </section>
+    <div class="container" id="ki"></div>
+
+    <script>
+        async function fetchProducts() {
+            try {
+                const resp = await fetch('http://localhost:5000/api/product');
+                const json = await resp.json();
+                console.log(json);
+                for (let p of json.products) {
+                    createProductDiv(p);
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        async function checkForNewProducts() {
+            try {
+                const resp = await fetch('http://localhost:5000/api/latestProducts');
+                const latestProducts = await resp.json();
+                const existingProductIds = Array.from(document.querySelectorAll('.product')).map(product => product.id);
+                const newProducts = latestProducts.filter(product => !existingProductIds.includes(product.id));
+                newProducts.forEach(newProduct => {
+                    createProductDiv(newProduct);
+                });
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        function createProductDiv(product) {
+            const productDiv = document.createElement('div');
+            productDiv.className = 'con';
+            productDiv.classList.add('product');
+            productDiv.id = product.id; // Assuming product.id exists and is unique
+            productDiv.innerHTML = `
+                <h1 class='head'> ${product.name}</h1>
+                <a href='products.html?id=${product._id}'><img src='http://localhost:5000/uploads/${product.image}' alt='${product.name}' height='350' width='520'/> </a><br><br>
+                <h2>Price: ${product.price}</h2><br>
+                <p class='desc'>${product.description}</p>
+            `;
+            document.getElementById('ki').appendChild(productDiv);
+        }
+
+        async function updateProducts() {
+            await checkForNewProducts();
+        }
+
+        // Initially fetch products
+        fetchProducts();
+
+        // Check for new products every 5 seconds (for example)
+        setInterval(updateProducts, 5000);
+    </script>
+</body>
+</html>

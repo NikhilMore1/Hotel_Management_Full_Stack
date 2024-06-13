@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+</head>
+<body>
+    <div id="product-details">
+        <!-- Product details will be displayed here -->
+    </div>
+
+    <script>
+        // Function to extract URL parameters
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        };
+
+        async function fetchProductDetails() {
+            try {
+                const productId = getUrlParameter('id');
+                const resp = await fetch(`http://localhost:5000/api/product/${productId}`);
+                const productData = await resp.json();
+                console.log(productData);
+                // Display the fetched product details
+                displayProductDetails(productData);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        function displayProductDetails(productData) {
+            const productDetailsDiv = document.getElementById('product-details');
+            // Render product details
+            productDetailsDiv.innerHTML = `
+                <h1>${productData.name}</h1>
+                <img src='http://localhost:5000/uploads/${productData.image}' alt='${productData.name}' height='350' width='520'/>
+                <h2>Price: ${productData.price}</h2>
+                <p>${productData.description}</p>
+            `;
+        }
+
+        // Fetch product details when the page loads
+        fetchProductDetails();
+    </script>
+</body>
+</html>

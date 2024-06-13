@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.form >label{
+    background-color: wheat;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-style: italic;
+    font-size: 202px;
+}
+.inp{
+    width: 2rem;
+    height: 2rem;
+}
+.vv{
+    width: 2rem;
+    height: 2rem;
+}
+   

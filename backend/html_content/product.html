@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style/hotels.css">
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav1">
+          <ul class="ul">
+            <li class="logo"><img src="images/hotel.png" alt="image"></li>
+            <li class="items">Home</li>
+            <li class="items"><a href="Hotels.html">Hotels</a></li>
+            <li class="items"><a href="bookings.html">Bookings</a></li>
+            <li class="items">Contacts</li>
+          </ul>
+        </div>
+    </nav>
+
+    <section class="sec1">
+        <div class="slideshow-container">
+          <h1 class="h1">Hotel Booking System</h1>
+          <div class="slide fade">
+            <img src="images/rambagh-palace-exterior.jpg" style="width:100%">
+          </div>
+        
+          <div class="slide fade">
+            <img src="images/taj.jpeg" style="width:100%">
+          </div>
+        
+          <div class="slide fade">
+            <img src="images/oberoy.webp" style="width:100%">
+          </div>
+        
+          <!-- Add more slides here as needed -->
+          <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+          <a class="next" onclick="changeSlide(1)">&#10095;</a>
+        </div>
+    </section>
+
+
+    <section class="services">
+      <div class="ser1">
+        <div class="s1 wedding">
+          <div class="weds">
+            <img src="images/wedding.png" alt="images" id="w1">
+           <div class="text">Timeless Weddings</div>
+          </div>
+        </div>
+        <div class="s1 wedding">
+          <div class="weds">
+            <img src="images/Heritage.jpg" alt="images" id="w2">
+            <div class="text">Meetings and Events</div>
+          </div>
+        </div>
+        <div class="s1 wedding">
+          <div class="weds">
+            <img src="images/dinning.jpeg" alt="images" id="w3">
+            <div class="text">Dinning</div>
+          </div>
+        </div>
+        <div class="s1 wedding">
+          <div class="weds">
+            <img src="images/style_rooms.jpeg" alt="images" id="w4">
+            <div class="text">Stylish Rooms</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="footer">
+      <footer class="foo">
+        <h1 id="f1">BOOK YOUR ROOM NOW!!</h1><hr>
+        <h2>content with us..</h2>
+        <div class="media">
+          <div class="ss">
+          <a href="https://www.instagram.com/nikhil_more_98/"> <i class="fa fa-instagram ins"></i></a>
+           <a href="https://www.linkedin.com/in/morenikhil123/"> <i class="fa fa-linkedin ins"></i></a>
+            <i class="fa fa-twitter ins"></i>
+          </div>
+        </div>
+      </footer>
+
+      <div class="se">
+      <p class="para">
+        &copy2024 The Hotel Booking System <br> All Right's reserved.
+      </p>
+      </div>
+    </section>
+    <script>
+      async function fetchProducts() {
+          try {
+              const resp = await fetch('http://localhost:5000/api/product');
+              const json = await resp.json();
+              console.log(json);
+              for (let p of json.products) {
+                  createProductDiv(p);
+              }
+          } catch (error) {
+              console.log(error);
+          }
+      }
+
+      async function checkForNewProducts() {
+          try {
+              const resp = await fetch('http://localhost:5000/api/latestProducts');
+              const latestProducts = await resp.json();
+              const existingProductIds = Array.from(document.querySelectorAll('.product')).map(product => product.id);
+              const newProducts = latestProducts.filter(product => !existingProductIds.includes(product.id));
+              newProducts.forEach(newProduct => {
+                  createProductDiv(newProduct);
+              });
+          } catch (error) {
+              console.log(error);
+          }
+      }
+
+      function createProductDiv(product) {
+          const productDiv = document.createElement('div');
+          productDiv.className = 'con'
+          productDiv.classList.add('product');
+          productDiv.id = product.id; // Assuming product.id exists and is unique
+          productDiv.innerHTML = `
+              <h1 class='head'> ${product.name}</h1>
+              <a href='product.html?id=${product._id}'><img src='http://localhost:5000/uploads/${product.image}' alt='${product.name}' height='350' width='520'/> </a><br><br>
+              <h2>Price: ${product.price}</h2><br>
+              <p class='desc'>${product.description}</p>
+          `;
+          document.getElementById('ki').appendChild(productDiv);
+      }
+
+      async function updateProducts() {
+          await checkForNewProducts();
+      }
+
+      // Initially fetch products
+      fetchProducts();
+
+      // Check for new products every 5 seconds (for example)
+      setInterval(updateProducts, 5000);
+
+
+
+
+
+
+      let slideIndex = 0;
+showSlides();
+
+function showSlides() {
+let slides = document.getElementsByClassName("slide");
+for (let i = 0; i < slides.length; i++) {
+  slides[i].style.display = "none";
+}
+slideIndex++;
+if (slideIndex > slides.length) {
+  slideIndex = 1;
+}
+slides[slideIndex - 1].style.display = "block";
+setTimeout(showSlides, 3000); // Change image every 2 seconds
+}
+
+function changeSlide(n) {
+slideIndex += n;
+showSlides();
+}
+
+  </script>
+</body>
+</html>
