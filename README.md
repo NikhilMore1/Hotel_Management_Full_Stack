@@ -11,15 +11,15 @@
 8 Node js<br>
 9 MVC Arcitectute<br>
 
-#For Run program steps
-1 install node modules
-##for starting backend----------
-1 npm start (Nodemon must install)
-2 api configure
-3 connect your mongo db collection name as my database name..
-##for frontend ----------------
-1 install react modules
-2 npm run dev
+#For Run program steps<br><br>
+1 install node modules<br>
+##for starting backend----------<br>
+1 npm start (Nodemon must install)<br>
+2 api configure<br>
+3 connect your mongo db collection name as my database name..<br>
+##for frontend ----------------<br>
+1 install react modules<br>
+2 npm run dev<br><br>
 
 
 ##Happy Coding
